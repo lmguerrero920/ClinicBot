@@ -52,3 +52,13 @@ D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Azure.Storage
 D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Azure.Storage.Common.dll
 D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Bot.Builder.Azure.Blobs.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Azure.CognitiveServices.Language.LUIS.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Bot.Builder.AI.Luis.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Bot.Builder.Dialogs.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Recognizers.Definitions.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Recognizers.Text.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Recognizers.Text.Choice.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Recognizers.Text.DateTime.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Recognizers.Text.Number.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Recognizers.Text.NumberWithUnit.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\Microsoft.Rest.ClientRuntime.Azure.dll

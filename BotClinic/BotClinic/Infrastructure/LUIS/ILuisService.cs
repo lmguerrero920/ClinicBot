@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BotClinic.Infrastructure.LUIS
 {
-    interface ILuisService
+   public interface ILuisService
     {
         LuisRecognizer _luisRecognizer {get; set; }
 
