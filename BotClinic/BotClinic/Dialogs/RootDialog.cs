@@ -1,4 +1,5 @@
-﻿using BotClinic.Infrastructure.LUIS;
+﻿using BotClinic.Common.Cards;
+using BotClinic.Infrastructure.LUIS;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using System;
@@ -44,7 +45,7 @@ namespace BotClinic.Dialogs
                 case "Despedir":
                     await IntentDespedir(stepContext, luisResult, cancellationToken);
                     break;
-                case "VerOpciones":
+                case "verOpciones":
                     await IntentVerOpciones(stepContext, luisResult, cancellationToken);
                     break;
                 case "VerCentroContacto":
@@ -106,9 +107,12 @@ namespace BotClinic.Dialogs
             throw new NotImplementedException();
         }
 
-        private Task IntentVerOpciones(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
+        private  async Task IntentVerOpciones(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            //await stepContext.Context.SendActivityAsync("Aqui tengo mis opciones", cancellationToken: cancellationToken);
+
+            await stepContext.Context.SendActivityAsync("Aquí tengo mis opciones", cancellationToken: cancellationToken);
+            await MainOptionsCard.Toshow(stepContext, cancellationToken);
         }
 
         private  async Task IntentDespedir(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
