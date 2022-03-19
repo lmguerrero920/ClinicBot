@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[3.1.1, )"
             },
+            "Microsoft.Bot.Builder.AI.Luis": {
+              "target": "Package",
+              "version": "[4.7.2, )"
+            },
             "Microsoft.Bot.Builder.Azure.Blobs": {
               "target": "Package",
               "version": "[4.12.0, )"
