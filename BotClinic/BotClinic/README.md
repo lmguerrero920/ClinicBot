@@ -12,7 +12,8 @@ This bot has been created using [Bot Framework](https://dev.botframework.com), i
   # determine dotnet version
   dotnet --version
   ```
-
+ https://www.luis.ai/applications/c2e48cba-5bf4-4998-a8c5-a58dcbc1f1a0/versions/0.1/build/intents
+ https://github.com/lmguerrero920/ClinicBot/tree/main/BotClinic/BotClinic
 ## To try this sample
 
 - In a terminal, navigate to `BotClinic`
