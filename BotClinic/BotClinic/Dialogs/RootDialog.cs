@@ -48,7 +48,7 @@ namespace BotClinic.Dialogs
                 case "verOpciones":
                     await IntentVerOpciones(stepContext, luisResult, cancellationToken);
                     break;
-                case "VerCentroContacto":
+                case "verCentroContacto":
                     await IntentVerCentroContacto(stepContext, luisResult, cancellationToken);
                     break;
                 case "Calificar":
@@ -102,9 +102,19 @@ namespace BotClinic.Dialogs
             throw new NotImplementedException();
         }
 
-        private Task IntentVerCentroContacto(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
+        private async  Task IntentVerCentroContacto(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            string phoneDetail = $"Nuestros numeros de atencion son los siguientes" +
+                $":{Environment.NewLine} 👌 3197210595 {Environment.NewLine}" +
+                $"3197210101";
+
+
+            string addressDetail = $"😚 Estamos Ubicados en {Environment.NewLine}" +
+                $"Cl 39 # 14-85 ";
+
+            await stepContext.Context.SendActivityAsync(phoneDetail,cancellationToken: cancellationToken);
+            await Task.Delay(1000);
+            await stepContext.Context.SendActivityAsync(addressDetail,cancellationToken: cancellationToken);
         }
 
         private  async Task IntentVerOpciones(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
