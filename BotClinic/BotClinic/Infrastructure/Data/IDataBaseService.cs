@@ -1,4 +1,5 @@
 ﻿using BotClinic.Common.Models;
+using BotClinic.Common.Models.Qualificatio;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace BotClinic.Infrastructure.Data
     {
 
          DbSet<UserModel> User { get; set; }
-
+        DbSet<QualificationModel> Qualification { get; set; }
         Task<bool> SaveAsync();
 
        

@@ -1,4 +1,6 @@
-﻿using Microsoft.Bot.Builder;
+﻿using BotClinic.Common.Models.Qualificatio;
+using BotClinic.Infrastructure.Data;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using System;
@@ -11,9 +13,10 @@ namespace BotClinic.Dialogs.Qualification
 {
     public class QualificationDialog: ComponentDialog
     {
-
-        public QualificationDialog()
+        private IDataBaseService _dataBaseService;
+        public QualificationDialog(IDataBaseService dataBaseService)
         {
+            _dataBaseService = dataBaseService;
 
             var waterfallSteps = new WaterfallStep[]
             {
@@ -40,10 +43,25 @@ namespace BotClinic.Dialogs.Qualification
             await stepContext.Context.SendActivityAsync
                 ("¿En que mas te puedo ayudar?");
 
+            await SaveQualification(stepContext, options);
+
             return await stepContext.ContinueDialogAsync(
                 cancellationToken: cancellationToken);
 
         }
+
+        private  async Task SaveQualification(WaterfallStepContext stepContext, string options)
+        {
+            var qualificationModel = new QualificationModel();
+            qualificationModel.id = Guid.NewGuid().ToString();
+            qualificationModel.idUser = stepContext.Context.Activity.From.Id;
+            qualificationModel.qualification = options;
+            qualificationModel.registerDate = DateTime.Now.Date;
+            await _dataBaseService.Qualification.AddAsync(qualificationModel);
+            await _dataBaseService.SaveAsync();
+
+        }
+
 
         private Activity CreateButtonsQualification()
         {

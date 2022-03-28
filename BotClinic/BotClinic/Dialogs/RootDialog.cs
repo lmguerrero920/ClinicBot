@@ -1,5 +1,6 @@
 ﻿using BotClinic.Common.Cards;
 using BotClinic.Dialogs.Qualification;
+using BotClinic.Infrastructure.Data;
 using BotClinic.Infrastructure.LUIS;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
@@ -14,18 +15,21 @@ namespace BotClinic.Dialogs
     public class RootDialog : ComponentDialog
     {
         private readonly ILuisService _luisService;
+        private readonly IDataBaseService _dataBaseService;
 
-        public RootDialog(ILuisService luisService)
+
+
+        public RootDialog(ILuisService luisService, IDataBaseService dataBaseService)
         {
             _luisService = luisService;
-
+            _dataBaseService = dataBaseService;
             var waterfallsteps = new WaterfallStep[]
             {
 
              InitialProcess,
              FinalProcess
             };
-            AddDialog(new QualificationDialog());
+            AddDialog(new QualificationDialog(_dataBaseService));
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), waterfallsteps));
             InitialDialogId = nameof(WaterfallDialog);
