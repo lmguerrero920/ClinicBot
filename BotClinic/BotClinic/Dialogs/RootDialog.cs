@@ -1,4 +1,5 @@
 ﻿using BotClinic.Common.Cards;
+using BotClinic.Dialogs.CreateAppointment;
 using BotClinic.Dialogs.Qualification;
 using BotClinic.Infrastructure.Data;
 using BotClinic.Infrastructure.LUIS;
@@ -30,6 +31,7 @@ namespace BotClinic.Dialogs
              FinalProcess
             };
             AddDialog(new QualificationDialog(_dataBaseService));
+            AddDialog(new CreateAppointmentDialog());
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), waterfallsteps));
             InitialDialogId = nameof(WaterfallDialog);
@@ -63,7 +65,7 @@ namespace BotClinic.Dialogs
                 case "None":
                     await IntentNone(stepContext, luisResult, cancellationToken);
                     break;
-                case "CrearCita":
+                case "crearCita":
                     return await IntentCrearCita(stepContext, luisResult, cancellationToken);
                 case "VerCita":
                     await IntentVerCita(stepContext, luisResult, cancellationToken);
@@ -93,9 +95,11 @@ namespace BotClinic.Dialogs
             throw new NotImplementedException();
         }
 
-        private Task<DialogTurnResult> IntentCrearCita(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
+        private  async Task<DialogTurnResult> IntentCrearCita(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await stepContext.BeginDialogAsync(
+                nameof(CreateAppointmentDialog),
+                cancellationToken: cancellationToken);
         }
 
         private async Task IntentNone(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
