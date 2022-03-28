@@ -1,4 +1,5 @@
 ﻿using BotClinic.Common.Cards;
+using BotClinic.Dialogs.Qualification;
 using BotClinic.Infrastructure.LUIS;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
@@ -24,6 +25,8 @@ namespace BotClinic.Dialogs
              InitialProcess,
              FinalProcess
             };
+            AddDialog(new QualificationDialog());
+            AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), waterfallsteps));
             InitialDialogId = nameof(WaterfallDialog);
 
@@ -97,9 +100,10 @@ namespace BotClinic.Dialogs
 
         }
 
-        private Task<DialogTurnResult> IntentCalificar(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
+        private  async Task<DialogTurnResult> IntentCalificar(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await stepContext.BeginDialogAsync(nameof(QualificationDialog), cancellationToken: cancellationToken);
+ 
         }
 
         private async  Task IntentVerCentroContacto(WaterfallStepContext stepContext, RecognizerResult luisResult, CancellationToken cancellationToken)
