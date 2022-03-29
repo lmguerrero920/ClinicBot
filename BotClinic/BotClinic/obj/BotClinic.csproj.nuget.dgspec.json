@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BOTCLINIC\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj": {}
+    "C:\\Users\\lugue\\Documents\\GitHub\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj": {}
   },
   "projects": {
-    "D:\\BOTCLINIC\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj": {
+    "C:\\Users\\lugue\\Documents\\GitHub\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BOTCLINIC\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj",
+        "projectUniqueName": "C:\\Users\\lugue\\Documents\\GitHub\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj",
         "projectName": "BotClinic",
-        "projectPath": "D:\\BOTCLINIC\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj",
+        "projectPath": "C:\\Users\\lugue\\Documents\\GitHub\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj",
         "packagesPath": "C:\\Users\\lugue\\.nuget\\packages\\",
-        "outputPath": "D:\\BOTCLINIC\\ClinicBot\\BotClinic\\BotClinic\\obj\\",
+        "outputPath": "C:\\Users\\lugue\\Documents\\GitHub\\ClinicBot\\BotClinic\\BotClinic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lugue\\AppData\\Roaming\\NuGet\\NuGet.Config",

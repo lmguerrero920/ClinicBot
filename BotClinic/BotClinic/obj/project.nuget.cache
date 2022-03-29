@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o/2KguQaPPjCSGF/3056OuYUmSpdwEWeMlqbs9JedlUqM/649Jg2BJPxspsaYNkloxxcnfriDrb0ctsqw0avaw==",
+  "dgSpecHash": "hfP88k5yEYrhXHVDVXR0zI53mZu8Z4J8kygSnYaUBHai4Mwo2DlahObRbPAybT2QO6xsqVaUtorXVGCHnQowPw==",
   "success": true,
-  "projectFilePath": "D:\\BOTCLINIC\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj",
+  "projectFilePath": "C:\\Users\\lugue\\Documents\\GitHub\\ClinicBot\\BotClinic\\BotClinic\\BotClinic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lugue\\.nuget\\packages\\azure.core\\1.2.2\\azure.core.1.2.2.nupkg.sha512",
     "C:\\Users\\lugue\\.nuget\\packages\\azure.storage.blobs\\12.4.4\\azure.storage.blobs.12.4.4.nupkg.sha512",
