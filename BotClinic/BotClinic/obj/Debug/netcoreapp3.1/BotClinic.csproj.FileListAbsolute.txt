@@ -79,3 +79,5 @@ D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\runtimes\win-
 D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Private.ServiceModel.dll
 D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Private.ServiceModel.dll
 D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\obj\Debug\netcoreapp3.1\staticwebassets\BotClinic.StaticWebAssets.xml
+D:\BOTCLINIC\ClinicBot\BotClinic\BotClinic\obj\Debug\netcoreapp3.1\scopedcss\bundle\BotClinic.styles.css

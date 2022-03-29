@@ -31,7 +31,7 @@ namespace BotClinic.Dialogs
              FinalProcess
             };
             AddDialog(new QualificationDialog(_dataBaseService));
-            AddDialog(new CreateAppointmentDialog());
+            AddDialog(new CreateAppointmentDialog(_dataBaseService));
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), waterfallsteps));
             InitialDialogId = nameof(WaterfallDialog);

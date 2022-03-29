@@ -1,6 +1,10 @@
-﻿using Microsoft.Bot.Builder;
+﻿using BotClinic.Common.Models;
+using BotClinic.Common.Models.MedicalAppointment;
+using BotClinic.Infrastructure.Data;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +15,16 @@ namespace BotClinic.Dialogs.CreateAppointment
 {
     public class CreateAppointmentDialog : ComponentDialog
     {
+        private readonly IDataBaseService  _dataBaseService;
 
-        public CreateAppointmentDialog()
+        public static UserModel newUserModel = new UserModel();
+
+        public static MedicalAppointmentModel medicalAppointmentModel =
+            new MedicalAppointmentModel();
+
+        public CreateAppointmentDialog(IDataBaseService dataBaseService)
         {
+            _dataBaseService = dataBaseService;
 
             var waterfallStep = new WaterfallStep[]
             {
@@ -41,7 +52,47 @@ namespace BotClinic.Dialogs.CreateAppointment
                 {
                     // SAVE DATABASE
 
-                    await stepContext.Context.SendActivityAsync("Excelente , ya esta registrado.", cancellationToken: cancellationToken);
+                    string userId = stepContext.Context.Activity.From.Id;
+                    var userModel = await _dataBaseService.User.FirstOrDefaultAsync(
+                        x => x.id == userId);
+
+                    //UPDATE USER
+                    userModel.phone = newUserModel.phone;
+                    userModel.fullName = newUserModel.fullName;
+                    userModel.email = newUserModel.email;
+
+                    _dataBaseService.User.Update(userModel);
+
+                    await _dataBaseService.SaveAsync();
+
+                    //save medical appoirntment
+                    medicalAppointmentModel.id = Guid.NewGuid().ToString();
+                    medicalAppointmentModel.idUser = userId;
+
+                    await _dataBaseService.MedicalAppointment.AddAsync(medicalAppointmentModel);
+                    await _dataBaseService.SaveAsync();
+
+
+
+                    await stepContext.Context.SendActivityAsync("Excelente , " +
+                        "ya esta registrada su cita.", cancellationToken: cancellationToken);
+
+
+                    //SHOW SUMMARY
+                    string summaryMedical = $"Para :{userModel.fullName} "+
+                        $"{Environment.NewLine}⌛ Telefono : {userModel.phone}"+
+                        $"{Environment.NewLine} ⌛ Email : {userModel.email}+" +
+                        $"{Environment.NewLine} ⌛ Fecha : {medicalAppointmentModel.date}"
+                        + $"{Environment.NewLine} ⌛ Hora : {medicalAppointmentModel.time}";
+
+                    await stepContext.Context.SendActivityAsync(summaryMedical, cancellationToken
+                        : cancellationToken);
+                    await Task.Delay(1000);
+
+                    await stepContext.Context.SendActivityAsync("¿En que mas puedo " +
+                        "ayudarte?" , cancellationToken: cancellationToken);
+
+                    medicalAppointmentModel = new MedicalAppointmentModel();
 
                 }
                 else
@@ -61,6 +112,8 @@ namespace BotClinic.Dialogs.CreateAppointment
         {
 
             var medicalDate = stepContext.Context.Activity.Text;
+             
+            medicalAppointmentModel.date = Convert.ToDateTime(medicalDate);
 
             return await stepContext.PromptAsync(
                 nameof(TextPrompt),
@@ -98,7 +151,7 @@ namespace BotClinic.Dialogs.CreateAppointment
         private async Task<DialogTurnResult> Confirmation(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
             var medicalTime = stepContext.Context.Activity.Text;
-            //medicalAppointment.time = int.Parse(medicalTime);
+            medicalAppointmentModel.time = int.Parse(medicalTime);
 
             return await stepContext.PromptAsync(
               nameof(TextPrompt),
@@ -128,9 +181,9 @@ namespace BotClinic.Dialogs.CreateAppointment
         {
             var userEmail = stepContext.Context.Activity.Text;
 
-            string text = $"Ahora ingresa la fecha de la cita medica" +
-                $" en el siguien formato {Environment.NewLine}" +
-                $"dd/mm/yyyy";
+            newUserModel.email = userEmail;
+
+            string text = $"Ahora ingresa la fecha de la cita medica en el siguien formato {Environment.NewLine} dd/mm/yyyy";
 
 
             return await stepContext.PromptAsync(
@@ -148,7 +201,9 @@ namespace BotClinic.Dialogs.CreateAppointment
         private  async Task<DialogTurnResult> SetEmail(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
 
-            var userEmail = stepContext.Context.Activity.Text;
+            var fullNameUser = stepContext.Context.Activity.Text;
+            newUserModel.fullName = fullNameUser;
+
 
             return await stepContext.PromptAsync(
                 nameof(TextPrompt),
@@ -165,7 +220,9 @@ namespace BotClinic.Dialogs.CreateAppointment
 
         private async Task<DialogTurnResult> SetFullName(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            var fullNameUser = stepContext.Context.Activity.Text;
+            var userPhone = stepContext.Context.Activity.Text;
+
+            newUserModel.phone = userPhone;
 
             return await stepContext.PromptAsync(
                 nameof(TextPrompt),

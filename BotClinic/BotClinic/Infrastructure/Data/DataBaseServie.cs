@@ -1,4 +1,5 @@
 ﻿using BotClinic.Common.Models;
+using BotClinic.Common.Models.MedicalAppointment;
 using BotClinic.Common.Models.Qualificatio;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,6 +31,7 @@ namespace BotClinic.Infrastructure.Data
         public DbSet<UserModel> User { get; set; }
 
         public DbSet<QualificationModel> Qualification { get; set; }
+        public DbSet<MedicalAppointmentModel> MedicalAppointment { get; set; }
         public async Task<bool> SaveAsync()
         {
             return (await SaveChangesAsync() > 0);
@@ -41,6 +43,7 @@ namespace BotClinic.Infrastructure.Data
 
             modelBuilder.Entity<UserModel>().ToContainer("User").HasPartitionKey("channel").HasNoDiscriminator().HasKey("id");
             modelBuilder.Entity<QualificationModel>().ToContainer("Qualification").HasPartitionKey("idUser").HasNoDiscriminator().HasKey("id");
+            modelBuilder.Entity<MedicalAppointmentModel>().ToContainer("MedicalAppointment").HasPartitionKey("idUser").HasNoDiscriminator().HasKey("id");
            
         }
     }
